@@ -134,7 +134,9 @@ namespace d_f_32.KanColleCacher
 		static void ParseSession(Session oSession)
 		{
 			SvData<kcsapi_start2> svd;
-			if (!SvData.TryParse(oSession.ToNekoxySession(), out svd))
+            Log.Warning("GraphList.ParseSession()", "TryParse失败，不兼容的Session对象！");
+            return;
+			if (!SvData.TryParse((Nekoxy.Session)(Object)oSession, out svd))
 			{
 				Log.Warning("GraphList.ParseSession()", "TryParse失败，无效的Session对象！");
 				return;
